@@ -1,13 +1,13 @@
-# Dockerfile: تشغيل n8n على Render
+# Dockerfile
 FROM n8nio/n8n:latest
 
 USER root
 RUN mkdir -p /home/node/.n8n && chown -R node:node /home/node/.n8n
 USER node
 
-# اجعل Render يعرف البورت
+# لازم Render يعرف البورت
 ENV PORT=5678
+ENV HOST=0.0.0.0
 EXPOSE 5678
 
-# شغّل n8n صراحة على 0.0.0.0 (مش localhost)
-CMD ["n8n", "start", "--tunnel", "--port", "5678", "--host", "0.0.0.0"]
+# مفيش CMD هنا، الصورة الأصلية فيها ENTRYPOINT بيشغل n8n تلقائيًا
